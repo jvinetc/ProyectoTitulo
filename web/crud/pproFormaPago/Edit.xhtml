@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproFormaPagoEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditPproFormaPagoTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproFormaPagoListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproFormaPagoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{pproFormaPagoController.selected != null}">
+
+                    <pm:field>
+                                <h:outputLabel value="#{myBundle.EditPproFormaPagoLabel_fpagId}" for="fpagId" />
+                        <h:outputText id="fpagId" value="#{pproFormaPagoController.selected.fpagId}" />
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproFormaPagoLabel_fpagNombre}" for="fpagNombre" />
+                        <p:inputText id="fpagNombre" value="#{pproFormaPagoController.selected.fpagNombre}" title="#{myBundle.EditPproFormaPagoTitle_fpagNombre}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproFormaPagoLabel_fpagEstado}" for="fpagEstado" />
+                        <p:inputText id="fpagEstado" value="#{pproFormaPagoController.selected.fpagEstado}" title="#{myBundle.EditPproFormaPagoTitle_fpagEstado}"/>
+                    </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{pproFormaPagoController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:PproFormaPagoListPage:PproFormaPagoListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:PproFormaPagoListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

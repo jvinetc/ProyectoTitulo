@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproPersonaViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewPproPersonaTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproPersonaListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproPersonaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{pproPersonaController.selected != null}">
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproPersonaLabel_perId}"/>
+                        <h:outputText value="#{pproPersonaController.selected.perId}" title="#{myBundle.ViewPproPersonaTitle_perId}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproPersonaLabel_perRut}"/>
+                        <h:outputText value="#{pproPersonaController.selected.perRut}" title="#{myBundle.ViewPproPersonaTitle_perRut}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproPersonaLabel_perDigito}"/>
+                        <h:outputText value="#{pproPersonaController.selected.perDigito}" title="#{myBundle.ViewPproPersonaTitle_perDigito}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproPersonaLabel_perRutComp}"/>
+                        <h:outputText value="#{pproPersonaController.selected.perRutComp}" title="#{myBundle.ViewPproPersonaTitle_perRutComp}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproPersonaLabel_perNombre}"/>
+                        <h:outputText value="#{pproPersonaController.selected.perNombre}" title="#{myBundle.ViewPproPersonaTitle_perNombre}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproPersonaLabel_perApePaterno}"/>
+                        <h:outputText value="#{pproPersonaController.selected.perApePaterno}" title="#{myBundle.ViewPproPersonaTitle_perApePaterno}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproPersonaLabel_perApeMaterno}"/>
+                        <h:outputText value="#{pproPersonaController.selected.perApeMaterno}" title="#{myBundle.ViewPproPersonaTitle_perApeMaterno}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproPersonaLabel_perDireccion}"/>
+                        <h:outputText value="#{pproPersonaController.selected.perDireccion}" title="#{myBundle.ViewPproPersonaTitle_perDireccion}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproPersonaLabel_perTelefono}"/>
+                        <h:outputText value="#{pproPersonaController.selected.perTelefono}" title="#{myBundle.ViewPproPersonaTitle_perTelefono}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproPersonaLabel_perTiperId}"/>
+                        <h:outputText value="#{pproPersonaController.selected.perTiperId.tiperId}"/>
+                    </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

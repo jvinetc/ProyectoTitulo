@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproTipoAnexoEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditPproTipoAnexoTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproTipoAnexoListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproTipoAnexoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{pproTipoAnexoController.selected != null}">
+
+                    <pm:field>
+                                <h:outputLabel value="#{myBundle.EditPproTipoAnexoLabel_tanId}" for="tanId" />
+                        <h:outputText id="tanId" value="#{pproTipoAnexoController.selected.tanId}" />
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproTipoAnexoLabel_tanNombre}" for="tanNombre" />
+                        <p:inputText id="tanNombre" value="#{pproTipoAnexoController.selected.tanNombre}" title="#{myBundle.EditPproTipoAnexoTitle_tanNombre}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproTipoAnexoLabel_tanEstado}" for="tanEstado" />
+                        <p:inputText id="tanEstado" value="#{pproTipoAnexoController.selected.tanEstado}" title="#{myBundle.EditPproTipoAnexoTitle_tanEstado}"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproTipoAnexoLabel_tanTiproId}" for="tanTiproId" />
+                        <p:selectOneMenu id="tanTiproId" value="#{pproTipoAnexoController.selected.tanTiproId}"  converter="pproTipoProveedorConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproTipoProveedorController.items}"
+                                           var="tanTiproIdItem"
+                                           itemValue="#{tanTiproIdItem}"
+                                           itemLabel="#{tanTiproIdItem.tiproId.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{pproTipoAnexoController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:PproTipoAnexoListPage:PproTipoAnexoListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:PproTipoAnexoListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

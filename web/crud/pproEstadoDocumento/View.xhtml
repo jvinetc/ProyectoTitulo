@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproEstadoDocumentoViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewPproEstadoDocumentoTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproEstadoDocumentoListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproEstadoDocumentoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{pproEstadoDocumentoController.selected != null}">
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproEstadoDocumentoLabel_edocId}"/>
+                        <h:outputText value="#{pproEstadoDocumentoController.selected.edocId}" title="#{myBundle.ViewPproEstadoDocumentoTitle_edocId}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproEstadoDocumentoLabel_edocNombre}"/>
+                        <h:outputText value="#{pproEstadoDocumentoController.selected.edocNombre}" title="#{myBundle.ViewPproEstadoDocumentoTitle_edocNombre}"/>
+                    </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproEntidadFinancieraViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewPproEntidadFinancieraTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproEntidadFinancieraListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproEntidadFinancieraViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{pproEntidadFinancieraController.selected != null}">
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproEntidadFinancieraLabel_entFinId}"/>
+                        <h:outputText value="#{pproEntidadFinancieraController.selected.entFinId}" title="#{myBundle.ViewPproEntidadFinancieraTitle_entFinId}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproEntidadFinancieraLabel_entFinNombre}"/>
+                        <h:outputText value="#{pproEntidadFinancieraController.selected.entFinNombre}" title="#{myBundle.ViewPproEntidadFinancieraTitle_entFinNombre}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproEntidadFinancieraLabel_entFinCodigo}"/>
+                        <h:outputText value="#{pproEntidadFinancieraController.selected.entFinCodigo}" title="#{myBundle.ViewPproEntidadFinancieraTitle_entFinCodigo}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproEntidadFinancieraLabel_entFinEstado}"/>
+                        <h:outputText value="#{pproEntidadFinancieraController.selected.entFinEstado}" title="#{myBundle.ViewPproEntidadFinancieraTitle_entFinEstado}"/>
+                    </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

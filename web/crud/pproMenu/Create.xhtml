@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproMenuCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreatePproMenuTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproMenuListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproMenuCreateForm">
+
+                <h:panelGroup id="display" rendered="#{pproMenuController.selected != null}">
+                    <p:outputPanel>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproMenuLabel_menNombre}" for="menNombre" />
+                        <p:inputText id="menNombre" value="#{pproMenuController.selected.menNombre}" title="#{myBundle.CreatePproMenuTitle_menNombre}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproMenuLabel_menEstado}" for="menEstado" />
+                        <p:inputText id="menEstado" value="#{pproMenuController.selected.menEstado}" title="#{myBundle.CreatePproMenuTitle_menEstado}"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproMenuLabel_menRuta}" for="menRuta" />
+                        <p:inputText id="menRuta" value="#{pproMenuController.selected.menRuta}" title="#{myBundle.CreatePproMenuTitle_menRuta}" size="255" maxlength="255"/>
+                    </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{pproMenuController.saveNew}" value="#{myBundle.Save}" update="display,:PproMenuListPage:PproMenuListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:PproMenuListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

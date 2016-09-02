@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproDocumentoViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewPproDocumentoTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproDocumentoListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproDocumentoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{pproDocumentoController.selected != null}">
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproDocumentoLabel_docId}"/>
+                        <h:outputText value="#{pproDocumentoController.selected.docId}" title="#{myBundle.ViewPproDocumentoTitle_docId}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproDocumentoLabel_docNumero}"/>
+                        <h:outputText value="#{pproDocumentoController.selected.docNumero}" title="#{myBundle.ViewPproDocumentoTitle_docNumero}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproDocumentoLabel_docRuta}"/>
+                        <h:outputText value="#{pproDocumentoController.selected.docRuta}" title="#{myBundle.ViewPproDocumentoTitle_docRuta}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproDocumentoLabel_docTdocId}"/>
+                        <h:outputText value="#{pproDocumentoController.selected.docTdocId.tdocId}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproDocumentoLabel_docUsuIngresa}"/>
+                        <h:outputText value="#{pproDocumentoController.selected.docUsuIngresa.usuUsername}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproDocumentoLabel_docUsuAutoriza}"/>
+                        <h:outputText value="#{pproDocumentoController.selected.docUsuAutoriza.usuUsername}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproDocumentoLabel_docUsuModifica}"/>
+                        <h:outputText value="#{pproDocumentoController.selected.docUsuModifica.usuUsername}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproDocumentoLabel_docProvId}"/>
+                        <h:outputText value="#{pproDocumentoController.selected.docProvId.provId}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproDocumentoLabel_docEdocId}"/>
+                        <h:outputText value="#{pproDocumentoController.selected.docEdocId.edocId}"/>
+                    </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

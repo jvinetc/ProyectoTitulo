@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproPersonaEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditPproPersonaTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproPersonaListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproPersonaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{pproPersonaController.selected != null}">
+
+                    <pm:field>
+                                <h:outputLabel value="#{myBundle.EditPproPersonaLabel_perId}" for="perId" />
+                        <h:outputText id="perId" value="#{pproPersonaController.selected.perId}" />
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproPersonaLabel_perRut}" for="perRut" />
+                        <p:inputText id="perRut" value="#{pproPersonaController.selected.perRut}" title="#{myBundle.EditPproPersonaTitle_perRut}" required="true" requiredMessage="#{myBundle.EditPproPersonaRequiredMessage_perRut}"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproPersonaLabel_perDigito}" for="perDigito" />
+                        <p:inputText id="perDigito" value="#{pproPersonaController.selected.perDigito}" title="#{myBundle.EditPproPersonaTitle_perDigito}" required="true" requiredMessage="#{myBundle.EditPproPersonaRequiredMessage_perDigito}" size="1" maxlength="1"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproPersonaLabel_perRutComp}" for="perRutComp" />
+                        <p:inputText id="perRutComp" value="#{pproPersonaController.selected.perRutComp}" title="#{myBundle.EditPproPersonaTitle_perRutComp}" required="true" requiredMessage="#{myBundle.EditPproPersonaRequiredMessage_perRutComp}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproPersonaLabel_perNombre}" for="perNombre" />
+                        <p:inputText id="perNombre" value="#{pproPersonaController.selected.perNombre}" title="#{myBundle.EditPproPersonaTitle_perNombre}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproPersonaLabel_perApePaterno}" for="perApePaterno" />
+                        <p:inputText id="perApePaterno" value="#{pproPersonaController.selected.perApePaterno}" title="#{myBundle.EditPproPersonaTitle_perApePaterno}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproPersonaLabel_perApeMaterno}" for="perApeMaterno" />
+                        <p:inputText id="perApeMaterno" value="#{pproPersonaController.selected.perApeMaterno}" title="#{myBundle.EditPproPersonaTitle_perApeMaterno}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproPersonaLabel_perDireccion}" for="perDireccion" />
+                        <p:inputText id="perDireccion" value="#{pproPersonaController.selected.perDireccion}" title="#{myBundle.EditPproPersonaTitle_perDireccion}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproPersonaLabel_perTelefono}" for="perTelefono" />
+                        <p:inputText id="perTelefono" value="#{pproPersonaController.selected.perTelefono}" title="#{myBundle.EditPproPersonaTitle_perTelefono}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproPersonaLabel_perTiperId}" for="perTiperId" />
+                        <p:selectOneMenu id="perTiperId" value="#{pproPersonaController.selected.perTiperId}"  converter="pproTipoPersonaConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproTipoPersonaController.items}"
+                                           var="perTiperIdItem"
+                                           itemValue="#{perTiperIdItem}"
+                                           itemLabel="#{perTiperIdItem.tiperId.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{pproPersonaController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:PproPersonaListPage:PproPersonaListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:PproPersonaListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

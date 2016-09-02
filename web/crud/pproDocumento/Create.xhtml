@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproDocumentoCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreatePproDocumentoTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproDocumentoListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproDocumentoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{pproDocumentoController.selected != null}">
+                    <p:outputPanel>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproDocumentoLabel_docNumero}" for="docNumero" />
+                        <p:inputText id="docNumero" value="#{pproDocumentoController.selected.docNumero}" title="#{myBundle.CreatePproDocumentoTitle_docNumero}"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproDocumentoLabel_docRuta}" for="docRuta" />
+                        <p:inputText id="docRuta" value="#{pproDocumentoController.selected.docRuta}" title="#{myBundle.CreatePproDocumentoTitle_docRuta}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproDocumentoLabel_docTdocId}" for="docTdocId" />
+                        <p:selectOneMenu id="docTdocId" value="#{pproDocumentoController.selected.docTdocId}"  converter="pproTipoDocumentoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproTipoDocumentoController.items}"
+                                           var="docTdocIdItem"
+                                           itemValue="#{docTdocIdItem}"
+                                           itemLabel="#{docTdocIdItem.tdocId.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproDocumentoLabel_docUsuIngresa}" for="docUsuIngresa" />
+                        <p:selectOneMenu id="docUsuIngresa" value="#{pproDocumentoController.selected.docUsuIngresa}"  converter="pproUsuarioConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproUsuarioController.items}"
+                                           var="docUsuIngresaItem"
+                                           itemValue="#{docUsuIngresaItem}"
+                                           itemLabel="#{docUsuIngresaItem.usuUsername.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproDocumentoLabel_docUsuAutoriza}" for="docUsuAutoriza" />
+                        <p:selectOneMenu id="docUsuAutoriza" value="#{pproDocumentoController.selected.docUsuAutoriza}"  converter="pproUsuarioConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproUsuarioController.items}"
+                                           var="docUsuAutorizaItem"
+                                           itemValue="#{docUsuAutorizaItem}"
+                                           itemLabel="#{docUsuAutorizaItem.usuUsername.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproDocumentoLabel_docUsuModifica}" for="docUsuModifica" />
+                        <p:selectOneMenu id="docUsuModifica" value="#{pproDocumentoController.selected.docUsuModifica}"  converter="pproUsuarioConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproUsuarioController.items}"
+                                           var="docUsuModificaItem"
+                                           itemValue="#{docUsuModificaItem}"
+                                           itemLabel="#{docUsuModificaItem.usuUsername.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproDocumentoLabel_docProvId}" for="docProvId" />
+                        <p:selectOneMenu id="docProvId" value="#{pproDocumentoController.selected.docProvId}"  converter="pproProveedorConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproProveedorController.items}"
+                                           var="docProvIdItem"
+                                           itemValue="#{docProvIdItem}"
+                                           itemLabel="#{docProvIdItem.provId.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproDocumentoLabel_docEdocId}" for="docEdocId" />
+                        <p:selectOneMenu id="docEdocId" value="#{pproDocumentoController.selected.docEdocId}"  converter="pproEstadoDocumentoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproEstadoDocumentoController.items}"
+                                           var="docEdocIdItem"
+                                           itemValue="#{docEdocIdItem}"
+                                           itemLabel="#{docEdocIdItem.edocId.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{pproDocumentoController.saveNew}" value="#{myBundle.Save}" update="display,:PproDocumentoListPage:PproDocumentoListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:PproDocumentoListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

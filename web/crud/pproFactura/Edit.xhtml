@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproFacturaEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditPproFacturaTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproFacturaListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproFacturaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{pproFacturaController.selected != null}">
+
+                    <pm:field>
+                                <h:outputLabel value="#{myBundle.EditPproFacturaLabel_facId}" for="facId" />
+                        <h:outputText id="facId" value="#{pproFacturaController.selected.facId}" />
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproFacturaLabel_facMonto}" for="facMonto" />
+                        <p:inputText id="facMonto" value="#{pproFacturaController.selected.facMonto}" title="#{myBundle.EditPproFacturaTitle_facMonto}"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproFacturaLabel_facIva}" for="facIva" />
+                        <p:inputText id="facIva" value="#{pproFacturaController.selected.facIva}" title="#{myBundle.EditPproFacturaTitle_facIva}"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproFacturaLabel_facNeto}" for="facNeto" />
+                        <p:inputText id="facNeto" value="#{pproFacturaController.selected.facNeto}" title="#{myBundle.EditPproFacturaTitle_facNeto}"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproFacturaLabel_facObsevacion}" for="facObsevacion" />
+                        <p:inputText id="facObsevacion" value="#{pproFacturaController.selected.facObsevacion}" title="#{myBundle.EditPproFacturaTitle_facObsevacion}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproFacturaLabel_facDocId}" for="facDocId" />
+                        <p:selectOneMenu id="facDocId" value="#{pproFacturaController.selected.facDocId}"  converter="pproDocumentoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproDocumentoController.items}"
+                                           var="facDocIdItem"
+                                           itemValue="#{facDocIdItem}"
+                                           itemLabel="#{facDocIdItem.docId.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{pproFacturaController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:PproFacturaListPage:PproFacturaListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:PproFacturaListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

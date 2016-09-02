@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproUsuarioViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewPproUsuarioTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproUsuarioListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproUsuarioViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{pproUsuarioController.selected != null}">
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproUsuarioLabel_usuId}"/>
+                        <h:outputText value="#{pproUsuarioController.selected.usuId}" title="#{myBundle.ViewPproUsuarioTitle_usuId}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproUsuarioLabel_usuUsername}"/>
+                        <h:outputText value="#{pproUsuarioController.selected.usuUsername}" title="#{myBundle.ViewPproUsuarioTitle_usuUsername}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproUsuarioLabel_usuPass}"/>
+                        <h:outputText value="#{pproUsuarioController.selected.usuPass}" title="#{myBundle.ViewPproUsuarioTitle_usuPass}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproUsuarioLabel_usuEstado}"/>
+                        <h:outputText value="#{pproUsuarioController.selected.usuEstado}" title="#{myBundle.ViewPproUsuarioTitle_usuEstado}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproUsuarioLabel_usuPerId}"/>
+                        <h:outputText value="#{pproUsuarioController.selected.usuPerId.perId}"/>
+                    </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

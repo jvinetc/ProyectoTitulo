@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproProveedorViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewPproProveedorTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproProveedorListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproProveedorViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{pproProveedorController.selected != null}">
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproProveedorLabel_provId}"/>
+                        <h:outputText value="#{pproProveedorController.selected.provId}" title="#{myBundle.ViewPproProveedorTitle_provId}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproProveedorLabel_provRazonSocial}"/>
+                        <h:outputText value="#{pproProveedorController.selected.provRazonSocial}" title="#{myBundle.ViewPproProveedorTitle_provRazonSocial}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproProveedorLabel_provEstado}"/>
+                        <h:outputText value="#{pproProveedorController.selected.provEstado}" title="#{myBundle.ViewPproProveedorTitle_provEstado}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproProveedorLabel_provPerId}"/>
+                        <h:outputText value="#{pproProveedorController.selected.provPerId.perId}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproProveedorLabel_provFpagId}"/>
+                        <h:outputText value="#{pproProveedorController.selected.provFpagId.fpagId}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproProveedorLabel_provTiproId}"/>
+                        <h:outputText value="#{pproProveedorController.selected.provTiproId.tiproId}"/>
+                    </pm:field>
+
+                    <pm:field>
+                        <h:outputText value="#{myBundle.ViewPproProveedorLabel_provNCuenta}"/>
+                        <h:outputText value="#{pproProveedorController.selected.provNCuenta}" title="#{myBundle.ViewPproProveedorTitle_provNCuenta}"/>
+                    </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

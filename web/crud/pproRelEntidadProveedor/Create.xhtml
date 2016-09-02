@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproRelEntidadProveedorCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreatePproRelEntidadProveedorTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproRelEntidadProveedorListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproRelEntidadProveedorCreateForm">
+
+                <h:panelGroup id="display" rendered="#{pproRelEntidadProveedorController.selected != null}">
+                    <p:outputPanel>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproRelEntidadProveedorLabel_repEstado}" for="repEstado" />
+                        <p:inputText id="repEstado" value="#{pproRelEntidadProveedorController.selected.repEstado}" title="#{myBundle.CreatePproRelEntidadProveedorTitle_repEstado}"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproRelEntidadProveedorLabel_repProvId}" for="repProvId" />
+                        <p:selectOneMenu id="repProvId" value="#{pproRelEntidadProveedorController.selected.repProvId}"  converter="pproProveedorConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproProveedorController.items}"
+                                           var="repProvIdItem"
+                                           itemValue="#{repProvIdItem}"
+                                           itemLabel="#{repProvIdItem.provId.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproRelEntidadProveedorLabel_repEntFinId}" for="repEntFinId" />
+                        <p:selectOneMenu id="repEntFinId" value="#{pproRelEntidadProveedorController.selected.repEntFinId}"  converter="pproEntidadFinancieraConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproEntidadFinancieraController.items}"
+                                           var="repEntFinIdItem"
+                                           itemValue="#{repEntFinIdItem}"
+                                           itemLabel="#{repEntFinIdItem.entFinId.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{pproRelEntidadProveedorController.saveNew}" value="#{myBundle.Save}" update="display,:PproRelEntidadProveedorListPage:PproRelEntidadProveedorListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:PproRelEntidadProveedorListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

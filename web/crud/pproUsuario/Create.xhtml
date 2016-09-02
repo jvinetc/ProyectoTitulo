@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproUsuarioCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreatePproUsuarioTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproUsuarioListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproUsuarioCreateForm">
+
+                <h:panelGroup id="display" rendered="#{pproUsuarioController.selected != null}">
+                    <p:outputPanel>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproUsuarioLabel_usuUsername}" for="usuUsername" />
+                        <p:inputText id="usuUsername" value="#{pproUsuarioController.selected.usuUsername}" title="#{myBundle.CreatePproUsuarioTitle_usuUsername}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproUsuarioLabel_usuPass}" for="usuPass" />
+                        <p:inputText id="usuPass" value="#{pproUsuarioController.selected.usuPass}" title="#{myBundle.CreatePproUsuarioTitle_usuPass}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproUsuarioLabel_usuEstado}" for="usuEstado" />
+                        <p:inputText id="usuEstado" value="#{pproUsuarioController.selected.usuEstado}" title="#{myBundle.CreatePproUsuarioTitle_usuEstado}"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproUsuarioLabel_usuPerId}" for="usuPerId" />
+                        <p:selectOneMenu id="usuPerId" value="#{pproUsuarioController.selected.usuPerId}"  converter="pproPersonaConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproPersonaController.items}"
+                                           var="usuPerIdItem"
+                                           itemValue="#{usuPerIdItem}"
+                                           itemLabel="#{usuPerIdItem.perId.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{pproUsuarioController.saveNew}" value="#{myBundle.Save}" update="display,:PproUsuarioListPage:PproUsuarioListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:PproUsuarioListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

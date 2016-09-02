@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproTipoDocumentoListPage">
+        <pm:header title="#{myBundle.ListPproTipoDocumentoTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/crud/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":PproTipoDocumentoCreatePage:PproTipoDocumentoCreateForm" actionListener="#{pproTipoDocumentoController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:PproTipoDocumentoCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+        <h:form id="PproTipoDocumentoListForm">
+
+                <p:dataList id="datalist"
+                            paginator="true"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            pt:data-inset="true"
+                            value="#{pproTipoDocumentoController.items}"
+                            var="item">
+
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPproTipoDocumentoTitle}"/>
+                    </f:facet>
+
+                    <p:commandLink update=":PproTipoDocumentoEditPage:PproTipoDocumentoEditForm" action="pm:PproTipoDocumentoEditPage">
+                        <p>
+
+
+    
+                        <h:outputText value="#{item.tdocId}"/>
+
+
+
+    ,&nbsp;
+                        <h:outputText value="#{item.tdocNombre}"/>
+
+
+
+    ,&nbsp;
+                        <h:outputText value="#{item.tdocEstado}"/>
+
+
+                        </p>
+                        <f:setPropertyActionListener value="#{item}" target="#{pproTipoDocumentoController.selected}" />
+                    </p:commandLink>
+
+                    <f:facet name="footer">
+                        <h:outputText value="#{myBundle.ListPproTipoDocumentoTitle}"/>
+                    </f:facet>
+
+                </p:dataList>
+        </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

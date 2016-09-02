@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproAnexoDocumentoCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreatePproAnexoDocumentoTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproAnexoDocumentoListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproAnexoDocumentoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{pproAnexoDocumentoController.selected != null}">
+                    <p:outputPanel>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproAnexoDocumentoLabel_aneRuta}" for="aneRuta" />
+                        <p:inputText id="aneRuta" value="#{pproAnexoDocumentoController.selected.aneRuta}" title="#{myBundle.CreatePproAnexoDocumentoTitle_aneRuta}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproAnexoDocumentoLabel_aneNota}" for="aneNota" />
+                        <p:inputText id="aneNota" value="#{pproAnexoDocumentoController.selected.aneNota}" title="#{myBundle.CreatePproAnexoDocumentoTitle_aneNota}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproAnexoDocumentoLabel_aneDocId}" for="aneDocId" />
+                        <p:selectOneMenu id="aneDocId" value="#{pproAnexoDocumentoController.selected.aneDocId}"  converter="pproDocumentoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproDocumentoController.items}"
+                                           var="aneDocIdItem"
+                                           itemValue="#{aneDocIdItem}"
+                                           itemLabel="#{aneDocIdItem.docId.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproAnexoDocumentoLabel_aneTanId}" for="aneTanId" />
+                        <p:selectOneMenu id="aneTanId" value="#{pproAnexoDocumentoController.selected.aneTanId}"  converter="pproTipoAnexoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproTipoAnexoController.items}"
+                                           var="aneTanIdItem"
+                                           itemValue="#{aneTanIdItem}"
+                                           itemLabel="#{aneTanIdItem.tanId.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{pproAnexoDocumentoController.saveNew}" value="#{myBundle.Save}" update="display,:PproAnexoDocumentoListPage:PproAnexoDocumentoListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:PproAnexoDocumentoListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

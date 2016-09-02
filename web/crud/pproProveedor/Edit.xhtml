@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproProveedorEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditPproProveedorTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproProveedorListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproProveedorEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{pproProveedorController.selected != null}">
+
+                    <pm:field>
+                                <h:outputLabel value="#{myBundle.EditPproProveedorLabel_provId}" for="provId" />
+                        <h:outputText id="provId" value="#{pproProveedorController.selected.provId}" />
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproProveedorLabel_provRazonSocial}" for="provRazonSocial" />
+                        <p:inputText id="provRazonSocial" value="#{pproProveedorController.selected.provRazonSocial}" title="#{myBundle.EditPproProveedorTitle_provRazonSocial}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproProveedorLabel_provEstado}" for="provEstado" />
+                        <p:inputText id="provEstado" value="#{pproProveedorController.selected.provEstado}" title="#{myBundle.EditPproProveedorTitle_provEstado}"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproProveedorLabel_provPerId}" for="provPerId" />
+                        <p:selectOneMenu id="provPerId" value="#{pproProveedorController.selected.provPerId}"  converter="pproPersonaConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproPersonaController.items}"
+                                           var="provPerIdItem"
+                                           itemValue="#{provPerIdItem}"
+                                           itemLabel="#{provPerIdItem.perId.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproProveedorLabel_provFpagId}" for="provFpagId" />
+                        <p:selectOneMenu id="provFpagId" value="#{pproProveedorController.selected.provFpagId}"  converter="pproFormaPagoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproFormaPagoController.items}"
+                                           var="provFpagIdItem"
+                                           itemValue="#{provFpagIdItem}"
+                                           itemLabel="#{provFpagIdItem.fpagId.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproProveedorLabel_provTiproId}" for="provTiproId" />
+                        <p:selectOneMenu id="provTiproId" value="#{pproProveedorController.selected.provTiproId}"  converter="pproTipoProveedorConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pproTipoProveedorController.items}"
+                                           var="provTiproIdItem"
+                                           itemValue="#{provTiproIdItem}"
+                                           itemLabel="#{provTiproIdItem.tiproId.toString()}"
+                            />
+                            
+                        </p:selectOneMenu>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.EditPproProveedorLabel_provNCuenta}" for="provNCuenta" />
+                        <p:inputText id="provNCuenta" value="#{pproProveedorController.selected.provNCuenta}" title="#{myBundle.EditPproProveedorTitle_provNCuenta}" size="255" maxlength="255"/>
+                    </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{pproProveedorController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:PproProveedorListPage:PproProveedorListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:PproProveedorListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PproModuloCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreatePproModuloTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PproModuloListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PproModuloCreateForm">
+
+                <h:panelGroup id="display" rendered="#{pproModuloController.selected != null}">
+                    <p:outputPanel>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproModuloLabel_modNombre}" for="modNombre" />
+                        <p:inputText id="modNombre" value="#{pproModuloController.selected.modNombre}" title="#{myBundle.CreatePproModuloTitle_modNombre}" size="255" maxlength="255"/>
+                    </pm:field>
+
+                    <pm:field>
+                                <p:outputLabel value="#{myBundle.CreatePproModuloLabel_modEstado}" for="modEstado" />
+                        <p:inputText id="modEstado" value="#{pproModuloController.selected.modEstado}" title="#{myBundle.CreatePproModuloTitle_modEstado}"/>
+                    </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{pproModuloController.saveNew}" value="#{myBundle.Save}" update="display,:PproModuloListPage:PproModuloListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:PproModuloListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>
